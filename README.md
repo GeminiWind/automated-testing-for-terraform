@@ -34,3 +34,13 @@ cd ec2-unit-test
 cd test
 go test -v ec2_unit_test.go
 ```
+
+### Run integrati test example
+
+To run the unit test example, complete the following steps on the command line
+
+```bash
+cd s3-cdn-integration-test
+cd test
+go test -v s3_cloudfront_integration_test.go
+```
