@@ -45,5 +45,5 @@ resource "null_resource" "upload_web_resouce" {
     command = "aws s3 sync ${var.artifact_dir} s3://${var.app}-site-bucket--stage-${var.stage}"
   }
 
-  depends_on = ["aws_s3_bucket.site_bucket"]
+  depends_on = [aws_s3_bucket.site_bucket]
 }
