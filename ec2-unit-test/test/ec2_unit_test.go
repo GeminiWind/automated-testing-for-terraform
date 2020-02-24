@@ -6,14 +6,14 @@ import (
 	"time"
 
 	http_helper "github.com/gruntwork-io/terratest/modules/http-helper"
-	
+
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
 func TestTerraformAwsHelloWorldExample(t *testing.T) {
 	terraformOptions := &terraform.Options{
 		// website::tag::1:: The path to where our Terraform code is located
-		TerraformDir: "../",
+		TerraformDir: "../examples/hello-world",
 	}
 
 	// website::tag::5:: At the end of the test, run `terraform destroy` to clean up any resources that were created.
@@ -23,9 +23,9 @@ func TestTerraformAwsHelloWorldExample(t *testing.T) {
 	terraform.InitAndApply(t, terraformOptions)
 
 	// website::tag::3:: Run `terraform output` to get the IP of the instance
-	publicIp := terraform.Output(t, terraformOptions, "public_ip")
+	publicIP := terraform.Output(t, terraformOptions, "public_ip")
 
 	// website::tag::4:: Make an HTTP request to the instance and make sure we get back a 200 OK with the body "Hello, World!"
-	url := fmt.Sprintf("http://%s", publicIp)
+	url := fmt.Sprintf("http://%s", publicIP)
 	http_helper.HttpGetWithRetry(t, url, nil, 200, "Hello, World!", 30, 30*time.Second)
 }
